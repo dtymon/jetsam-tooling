@@ -1,6 +1,6 @@
 {
   "name": "@jetsam/tooling",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "jetsam - Provides a consistent toolset for all jetsam packages and applications",
   "repository": "github:dtymon/jetsam-tooling",
   "bugs": "https://github.com/dtymon/jetsam-tooling/issues",
@@ -46,10 +46,6 @@
     "pre-commit": "yarn build && yarn test && yarn lint && yarn jetsam audit --minimum high",
     "reinstall": "rimraf node_modules yarn.lock; yarn install",
     "release": "yarn jetsam release"
-  },
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": "./dist/index.js"
   },
   "bin": {
     "jetsam": "./dist/cli/jetsam.js",
