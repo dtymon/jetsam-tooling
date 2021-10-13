@@ -1,5 +1,5 @@
 {
-  "extends": "./exported-configs/tsconfig.base.json",
+  "extends": "./exports/tsconfig.base.json",
   "include": ["src/bin/*.ts", "src/bin/**/*.ts"],
   "exclude": ["src/bin/**/*.spec.ts"],
   "compilerOptions": {

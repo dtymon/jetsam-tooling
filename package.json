@@ -37,7 +37,7 @@
     "clean": "rimraf ./dist",
     "compile": "tsc",
     "jetsam": "node ./dist/cli/jetsam",
-    "build:dist": "yarn jetsam build-dist --files exported-configs",
+    "build:dist": "yarn jetsam build-dist --files exports",
     "lint": "yarn lint:src && yarn lint:bin && yarn lint:test",
     "lint:src": "eslint --config .eslintrc.js --no-error-on-unmatched-pattern --ignore-pattern 'src/lib/**/*.spec.ts' 'src/lib/**/*.ts'",
     "lint:bin": "eslint --config .eslintrc.bin.js --no-error-on-unmatched-pattern --ignore-pattern 'src/bin/**/*.spec.ts' 'src/bin/**/*.ts'",
