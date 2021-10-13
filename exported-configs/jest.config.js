@@ -1,0 +1,15 @@
+module.exports = {
+  collectCoverage: true,
+  coverageDirectory: 'test/reports',
+  coverageReporters: ['cobertura', 'text'],
+  moduleDirectories: ['node_modules', 'src'],
+  moduleFileExtensions: ['ts', 'js', 'json'],
+  modulePaths: ['<rootDir>'],
+  preset: 'ts-jest',
+  reporters: ['default', ['jest-junit', { outputDirectory: 'test/reports' }]],
+  roots: ['<rootDir>'],
+  testEnvironment: 'node',
+  testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/dist/'],
+  testTimeout: 10000,
+  verbose: true,
+};

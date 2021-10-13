@@ -1,5 +1,6 @@
-const baseConfig = require('./node_modules/@jetsam/tooling/exported-configs/jest.config.js');
+const baseConfig = require('./exported-configs/jest.config.js');
 
 module.exports = {
-  ...baseConfig
+  ...baseConfig,
+  testMatch: ['<rootDir>/(src|test)/**/*.spec.ts'],
 };

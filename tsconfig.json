@@ -1,5 +1,5 @@
 {
-  "extends": "./node_modules/@jetsam/tooling/exported-configs/tsconfig.json",
+  "extends": "./exported-configs/tsconfig.base.json",
   "include": ["src/lib/*.ts", "src/lib/**/*.ts"],
   "exclude": ["src/lib/**/*.spec.ts"],
   "compilerOptions": {
