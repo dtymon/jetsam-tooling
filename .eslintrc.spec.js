@@ -1,3 +1,3 @@
 module.exports = {
-  extends: ['./node_modules/@jetsam/tooling/exported-configs/.eslintrc.spec.js']
+  extends: ['./node_modules/@jetsam/tooling/exports/.eslintrc.spec.js']
 };

@@ -1,4 +1,4 @@
-const baseConfig = require('./node_modules/@jetsam/tooling/exported-configs/.prettierrc.js');
+const baseConfig = require('./node_modules/@jetsam/tooling/exports/.prettierrc.js');
 
 module.exports = {
   ...baseConfig
