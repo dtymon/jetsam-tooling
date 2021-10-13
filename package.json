@@ -2,24 +2,35 @@
   "name": "@jetsam/tooling",
   "version": "0.0.1",
   "description": "jetsam - Provides a consistent toolset for all jetsam packages and applications",
+  "repository": "github:dtymon/jetsam-tooling",
+  "bugs": "https://github.com/dtymon/jetsam-tooling/issues",
   "author": "David Tymon",
   "license": "MIT",
   "keywords": [
     "ts",
     "typescript",
     "jetsam",
-    "framework"
-    "platform",
     "framework",
+    "platform",
     "microservice",
     "api",
-    "express",
-    "jetsam"
+    "express"
   ],
-  "repository": "github:dtymon/jetsam-tooling",
-  "bugs": "https://github.com/dtymon/jetsam-tooling/issues",
+  "files": [
+    "**/*.{ts,js,json}",
+    "*.map",
+    "bin/**",
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md",
+    "yarn.lock"
+  ],
   "engines": {
     "node": ">=14.17.6 <15"
+  },
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js"
   },
   "scripts": {
     "build": "yarn clean && yarn compile && yarn build:dist",
@@ -81,14 +92,5 @@
     "typescript": "~4.4.3",
     "yaml": "^1.10.2",
     "yargs": "^17.2.1"
-  },
-  "files": [
-    "**/*.{ts,js,json}",
-    "*.map",
-    "bin/**",
-    "CHANGELOG.md",
-    "LICENSE",
-    "README.md",
-    "yarn.lock"
-  ]
+  }
 }
