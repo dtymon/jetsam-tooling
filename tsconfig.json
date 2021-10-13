@@ -1,5 +1,5 @@
 {
-  "extends": "./exported-configs/tsconfig.base.json",
+  "extends": "./exports/tsconfig.base.json",
   "include": ["src/lib/*.ts", "src/lib/**/*.ts"],
   "exclude": ["src/lib/**/*.spec.ts"],
   "compilerOptions": {

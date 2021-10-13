@@ -1,32 +1,43 @@
 {
   "name": "@jetsam/tooling",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "jetsam - Provides a consistent toolset for all jetsam packages and applications",
+  "repository": "github:dtymon/jetsam-tooling",
+  "bugs": "https://github.com/dtymon/jetsam-tooling/issues",
   "author": "David Tymon",
   "license": "MIT",
   "keywords": [
     "ts",
     "typescript",
     "jetsam",
-    "framework"
-    "platform",
     "framework",
+    "platform",
     "microservice",
     "api",
-    "express",
-    "jetsam"
+    "express"
   ],
-  "repository": "github:dtymon/jetsam-tooling",
-  "bugs": "https://github.com/dtymon/jetsam-tooling/issues",
+  "files": [
+    "**/*.{ts,js,json}",
+    "*.map",
+    "bin/**",
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md",
+    "yarn.lock"
+  ],
   "engines": {
     "node": ">=14.17.6 <15"
+  },
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js"
   },
   "scripts": {
     "build": "yarn clean && yarn compile && yarn build:dist",
     "clean": "rimraf ./dist",
     "compile": "tsc",
     "jetsam": "node ./dist/cli/jetsam",
-    "build:dist": "yarn jetsam build-dist --files exported-configs",
+    "build:dist": "yarn jetsam build-dist --files exports",
     "lint": "yarn lint:src && yarn lint:bin && yarn lint:test",
     "lint:src": "eslint --config .eslintrc.js --no-error-on-unmatched-pattern --ignore-pattern 'src/lib/**/*.spec.ts' 'src/lib/**/*.ts'",
     "lint:bin": "eslint --config .eslintrc.bin.js --no-error-on-unmatched-pattern --ignore-pattern 'src/bin/**/*.spec.ts' 'src/bin/**/*.ts'",
@@ -78,17 +89,8 @@
     "ts-node": "^10.3.0",
     "tsconfig-paths": "^3.11.0",
     "typedoc": "^0.22.5",
-    "typescript": "~4.4.3",
+    "typescript": "^4.4.4",
     "yaml": "^1.10.2",
     "yargs": "^17.2.1"
-  },
-  "files": [
-    "**/*.{ts,js,json}",
-    "*.map",
-    "bin/**",
-    "CHANGELOG.md",
-    "LICENSE",
-    "README.md",
-    "yarn.lock"
-  ]
+  }
 }
