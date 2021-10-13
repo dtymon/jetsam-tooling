@@ -1,0 +1,41 @@
+{
+  "author": "David Tymon",
+  "license": "MIT",
+  "keywords": [
+    "ts",
+    "typescript",
+    "jetsam",
+    "framework"
+  ],
+  "engines": {
+    "node": ">=14.17.6 <15"
+  },
+  "scripts": {
+    "build": "yarn clean && yarn compile && yarn build:dist",
+    "clean": "rimraf ./dist",
+    "compile": "tsc",
+    "jetsam": "jetsam",
+    "build:dist": "jetsam build-dist",
+    "lint": "yarn lint:src && yarn lint:bin && yarn lint:test",
+    "lint:src": "eslint --config .eslintrc.cjs --no-error-on-unmatched-pattern --ignore-pattern 'src/lib/**/*.spec.ts' 'src/lib/**/*.ts'",
+    "lint:bin": "eslint --config .eslintrc.bin.cjs --no-error-on-unmatched-pattern --ignore-pattern 'src/bin/**/*.spec.ts' 'src/bin/**/*.ts'",
+    "lint:test": "eslint --config .eslintrc.spec.cjs --no-error-on-unmatched-pattern 'src/**/*.spec.ts' 'test/*.spec.ts' 'test/**/*.spec.ts'",
+    "test": "NODE_CONFIG_DIR=./src/config NODE_ENV=test jest --ci --passWithNoTests --runInBand --",
+    "pre-commit": "yarn build && yarn test && yarn lint && yarn jetsam audit",
+    "reinstall": "rimraf node_modules yarn.lock; yarn install",
+    "release": "./scripts/create-release"
+  },
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "**/*.{ts,js,json}",
+    "*.map",
+    "bin/**",
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md",
+    "yarn.lock"
+  ]
+}

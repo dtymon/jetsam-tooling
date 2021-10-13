@@ -1,0 +1,11 @@
+{
+  "extends": "./node_modules/@jetsam/tooling/exported-configs/tsconfig.json",
+  "include": ["src/bin/*.ts", "src/bin/**/*.ts"],
+  "exclude": ["src/bin/**/*.spec.ts"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": "src/lib",
+    "declarationDir": "dist",
+    "outDir": "dist"
+  }
+}
