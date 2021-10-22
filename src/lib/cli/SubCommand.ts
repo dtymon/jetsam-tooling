@@ -26,7 +26,10 @@ export abstract class SubCommand {
    *
    * @returns the function to call to configure the sub-command
    */
-  public abstract configure(): (yargs: Argv) => Argv;
+  public configure(): (yargs: Argv) => Argv {
+    // By default, the subcommand will take no options
+    return (yargs: Argv) => yargs;
+  }
 
   /**
    * Called to execute the sub-command given the command-line arguments passed

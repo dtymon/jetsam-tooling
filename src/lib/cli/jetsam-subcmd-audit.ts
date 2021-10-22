@@ -87,12 +87,12 @@ class AuditDependencies extends SubCommand {
     }
 
     // Run `yarn audit` and get back its exit status
-    let exitStatus = await executeCmd('yarn', yarnArgs, { stdio: 'inherit' });
+    let exitStatus = await executeCmd('yarn', ...yarnArgs);
 
     // If there are any issues (ie: exit status is non-zero) and a minimum
     // severity was provided then see if they can be suppressed.
     const minSeverity = args.minimum as Severity;
-    if (minSeverity !== undefined && exitStatus != 0) {
+    if (minSeverity !== undefined && exitStatus > 0) {
       // Convert the string severity into its corresponding bit
       const minStatusBit = YarnAuditSeverityBits[minSeverity];
 
