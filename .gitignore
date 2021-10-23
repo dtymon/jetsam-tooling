@@ -2,3 +2,5 @@
 /dist
 /test/reports
 /.log
+/yarn-error.log
+/releases
