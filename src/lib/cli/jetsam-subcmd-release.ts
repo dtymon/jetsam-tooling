@@ -35,11 +35,16 @@ class PerformRelease extends SubCommand {
    */
   public configure(): (yargs: Argv) => Argv {
     return (yargs: Argv) =>
-      yargs.option('dry-run', {
-        alias: 'd',
-        description: 'Perform a dry-run of the release',
-        type: 'boolean',
-      });
+      yargs
+        .option('dry-run', {
+          alias: 'd',
+          description: 'Perform a dry-run of the release',
+          type: 'boolean',
+        })
+        .option('ignore-changelog', {
+          description: 'Do not enforce an entry for the version in the CHANGELOG',
+          type: 'boolean',
+        });
   }
 
   /**
@@ -51,6 +56,7 @@ class PerformRelease extends SubCommand {
    */
   public async execute(args: Arguments): Promise<number> {
     const dryRun = args.dryRun === true;
+    const ignoreChangelog = args.ignoreChangelog === true;
 
     // Get the current branch name and make sure it is a release branch
     const branch = await getOutputFromCmd('git', 'branch', '--show-current');
@@ -151,16 +157,18 @@ class PerformRelease extends SubCommand {
     }
 
     // Make sure the CHANGELOG contains an entry for this version
-    try {
-      const changelog = await readFile('CHANGELOG.md', 'utf8');
-      const regex = new RegExp(`^#+ +${versionNum}$`, 'gm');
-      if (!regex.test(changelog)) {
-        console.error(`Error: CHANGELOG does not contain an entry for version $versionNum`);
+    if (!ignoreChangelog) {
+      try {
+        const changelog = await readFile('CHANGELOG.md', 'utf8');
+        const regex = new RegExp(`^#+ +${versionNum}$`, 'gm');
+        if (!regex.test(changelog)) {
+          console.error(`Error: CHANGELOG does not contain an entry for version $versionNum`);
+          return 1;
+        }
+      } catch (err) {
+        console.error(`Error: Failed to read CHANGELOG: ${err}`);
         return 1;
       }
-    } catch (err) {
-      console.error(`Error: Failed to read CHANGELOG: ${err}`);
-      return 1;
     }
 
     // Make sure the pre-commit checks pass before continuing

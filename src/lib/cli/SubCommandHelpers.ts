@@ -21,41 +21,48 @@ export async function getInput(prompt: string, choices?: string[], defaultChoice
     input: process.stdin,
     output: process.stdout,
   });
-  const question = promisify(rl.question).bind(rl);
 
-  // Build the full prompt
-  let fullPrompt = prompt;
-  if (choices !== undefined && choices.length > 0) {
-    fullPrompt += ` [${choices.join(',')}]`;
-    if (defaultChoice !== undefined) {
-      fullPrompt += ` (${defaultChoice})`;
-    }
-  }
-  fullPrompt += '? ';
-
-  // Prompt the user for a response until we are satisfied
-  let done = false;
   let answer = '';
-  while (!done) {
-    answer = (await question(fullPrompt)) as any;
+  try {
+    const question = promisify(rl.question).bind(rl);
 
-    // If there's a default choice and the user's response is empty then set it
-    // to the default.
-    if (defaultChoice !== undefined && answer === '') {
-      answer = defaultChoice;
-      done = true;
+    // Build the full prompt
+    let fullPrompt = prompt;
+    if (choices !== undefined && choices.length > 0) {
+      fullPrompt += ` [${choices.join(',')}]`;
+      if (defaultChoice !== undefined) {
+        fullPrompt += ` (${defaultChoice})`;
+      }
     }
+    fullPrompt += '? ';
 
-    // If we have a list of valid choices then make sure the user entered one
-    else if (choices !== undefined && choices.length > 0) {
-      done = choices.indexOf(answer) >= 0;
-    }
+    // Prompt the user for a response until we are satisfied
+    let done = false;
+    while (!done) {
+      answer = (await question(fullPrompt)) as any;
 
-    // Any response will do
-    else {
-      done = true;
+      // If there's a default choice and the user's response is empty then set it
+      // to the default.
+      if (defaultChoice !== undefined && answer === '') {
+        answer = defaultChoice;
+        done = true;
+      }
+
+      // If we have a list of valid choices then make sure the user entered one
+      else if (choices !== undefined && choices.length > 0) {
+        done = choices.indexOf(answer) >= 0;
+      }
+
+      // Any response will do
+      else {
+        done = true;
+      }
     }
+  } finally {
+    // Ensure the readline interface always gets closed
+    rl.close();
   }
+
   return answer;
 }
 

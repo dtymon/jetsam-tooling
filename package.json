@@ -51,7 +51,7 @@
     "jetsam": "./dist/cli/jetsam.js",
     "jetsam-subcmd-audit.js": "./dist/cli/jetsam-subcmd-audit.js",
     "jetsam-subcmd-build-dist.js": "./dist/cli/jetsam-subcmd-build-dist.js",
-    "jetsam-subcmd-release.js": "./dist/cli/jetsam-release.js"
+    "jetsam-subcmd-release.js": "./dist/cli/jetsam-subcmd-release.js"
   },
   "dependencies": {
     "@microsoft/tsdoc": "^0.13.2",
