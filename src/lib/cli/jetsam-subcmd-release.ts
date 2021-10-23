@@ -1,4 +1,6 @@
 import { readFile } from 'fs/promises';
+import mkdirp from 'mkdirp';
+import path from 'path';
 import { Arguments, Argv } from 'yargs';
 
 import { confirm, getInput, executeCmd, executeCmdSilently, getOutputFromCmd } from './SubCommandHelpers';
@@ -55,6 +57,22 @@ class PerformRelease extends SubCommand {
    * @returns the exit status to use for `jetsam`
    */
   public async execute(args: Arguments): Promise<number> {
+    try {
+      const exitStatus = await this.executeImpl(args);
+      return exitStatus;
+    } catch (err) {
+      console.error(`Error: Failed to perform release: ${err}`);
+      return 1;
+    }
+  }
+
+  /**
+   * Implementation of the `release` sub-command
+   *
+   * @param args - the command-line arguments
+   * @returns the exit status to use for `jetsam`
+   */
+  private async executeImpl(args: Arguments): Promise<number> {
     const dryRun = args.dryRun === true;
     const ignoreChangelog = args.ignoreChangelog === true;
 
@@ -245,6 +263,16 @@ class PerformRelease extends SubCommand {
       exitStatus = await executeCmd('git', 'push', 'origin', version);
       if (exitStatus !== 0) {
         console.error(`Error: Failed to push local tag "${version}" to origin`);
+        return exitStatus ?? 1;
+      }
+
+      // Create a bundle for this release
+      this.banner(`Building release bundle for ${version}`);
+      const bundle = `releases/${manifest.name}-${version}.tgz`;
+      await mkdirp(path.dirname(bundle));
+      exitStatus = await executeCmd('yarn', '--cwd', 'dist', 'pack', '--filename', bundle);
+      if (exitStatus !== 0) {
+        console.error(`Error: Failed to create release bundle "${bundle}"`);
         return exitStatus ?? 1;
       }
     }

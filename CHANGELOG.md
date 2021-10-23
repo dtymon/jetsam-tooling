@@ -1,3 +1,13 @@
+## 1.2.0
+
+- `jetsam release` now also builds a release bundle that can be published
+
+### Dependencies
+
+- `[@types/node]` 14.17.28 ➞ 14.17.29
+- `[eslint]` 8.0.1 ➞ 8.1.0
+- `[ts-node]` 10.3.1 ➞ 10.4.0
+
 ## 1.1.0
 
 - Make `jetsam release` command available to other packages
