@@ -1,6 +1,6 @@
 {
   "name": "@jetsam/tooling",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "jetsam - Provides a consistent toolset for all jetsam packages and applications",
   "repository": "github:dtymon/jetsam-tooling",
   "bugs": "https://github.com/dtymon/jetsam-tooling/issues",
@@ -49,8 +49,9 @@
   },
   "bin": {
     "jetsam": "./dist/cli/jetsam.js",
+    "jetsam-subcmd-audit.js": "./dist/cli/jetsam-subcmd-audit.js",
     "jetsam-subcmd-build-dist.js": "./dist/cli/jetsam-subcmd-build-dist.js",
-    "jetsam-subcmd-audit.js": "./dist/cli/jetsam-subcmd-audit.js"
+    "jetsam-subcmd-release.js": "./dist/cli/jetsam-release.js"
   },
   "dependencies": {
     "@microsoft/tsdoc": "^0.13.2",
