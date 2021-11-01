@@ -1,3 +1,8 @@
+## 1.3.0
+
+- Do not include `yarn.lock` in the released package as it causes issues with
+  dependency hoisting.
+
 ## 1.2.0
 
 - `jetsam release` now also builds a release bundle that can be published
