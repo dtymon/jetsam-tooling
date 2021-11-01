@@ -3,6 +3,15 @@
 - Do not include `yarn.lock` in the released package as it causes issues with
   dependency hoisting.
 
+### Dependencies
+
+- `[@types/node]` 14.17.29 ➞ 14.17.32
+- `[@types/yargs]` 17.0.4 ➞ 17.0.5
+- `[@typescript-eslint/eslint-plugin]` 5.1.0 ➞ 5.2.0
+- `[@typescript-eslint/parser]` 5.1.0 ➞ 5.2.0
+- `[jest-when]` 3.4.1 ➞ 3.4.2
+- `[typedoc]` 0.22.6 ➞ 0.22.7
+
 ## 1.2.0
 
 - `jetsam release` now also builds a release bundle that can be published
