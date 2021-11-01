@@ -8,7 +8,7 @@ import { isExistingDir, isExistingPath, filterFile, findFiles } from './SubComma
 import { SubCommand } from './SubCommand';
 
 // A standard set of files to always copy to the distribution if they exist
-const STANDARD_FILES = ['CHANGELOG.md', 'LICENSE', 'README.md', '.npmignore', 'yarn.lock'];
+const STANDARD_FILES = ['CHANGELOG.md', 'LICENSE', 'README.md', '.npmignore'];
 
 /**
  * A `jetsam` sub-command that is used to copy auxiliary files into the
